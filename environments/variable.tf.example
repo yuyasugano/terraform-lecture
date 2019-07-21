@@ -1,0 +1,124 @@
+#--------------------------------------------
+# 各モジュールで使用する変数およびデフォルト値を定義
+#--------------------------------------------
+variable "common" {
+  type = "map"
+  default = {
+    default.region = "ap-northeast-1"
+    default.project = ""
+    default.access_key = ""
+    default.secret_key = ""
+  }
+}
+
+# VPC
+variable "vpc" {
+  type = "map"
+  default = {
+    default.name = "Terraform"
+    default.cidr = "172.16.0.0/16"
+    default.public-a = "172.16.0.0/24"
+    default.public-c = "172.16.1.0/24"
+    default.private-a = "172.16.2.0/24"
+    default.private-c = "172.16.3.0/24"
+  }
+}
+
+# ELB
+variable "elb" {
+  type = "map"
+  default = {
+    # default
+    default.name = "default-elb"
+    default.internal = false
+
+    # ヘルスチェックに関する設定
+    default.healthy_threshold = 2
+    default.unhealthy_threshold = 2
+    default.timeout = 3
+    default.target = "HTTP:80/"
+    default.interval = 30
+
+    default.cross_zone_load_balancing = true
+    default.idle_timeout = 400
+    default.connection_draining = true
+    default.connection_draining_timeout = 400
+
+    default.protocol = "tcp"
+    default.instance_port = 80
+    default.instance_protocol = "http"
+    default.lb_protocol = "http"
+    default.lb_port = 80
+    default.cidr_blocks = "0.0.0.0/0"
+
+    develop.name = ""
+  }
+}
+
+# RDS
+variable "rds" {
+  type = "map"
+  default = {
+    # default
+    default.identifier = "default-database-identifier"
+    default.name = "default_database"
+    default.engine = "mysql"
+    default.port = 3306
+    default.engine_version = "5.6.40"
+    default.instance_class = "db.t2.micro"
+    default.multi_az = false
+    default.backup_retention_period = "7"
+    default.backup_window = "19:00-19:30"
+    default.maintenace_window = "Mon:04:00-Mon:04:30"
+    default.apply_immediately = "true"
+    default.auto_minor_version_upgrade = false
+    default.family = "mysql5.6"
+    default.allocated_storage = 5
+    default.major_engine_version = "5.6"
+
+    default.db_user_name = "root"
+    default.db_password = "hogehoge"
+
+    # develop
+    develop.identifier = ""
+    develop.name = ""
+    develop.instance_class = "db.t2.micro"
+
+    develop.db_user_name = "root"
+    develop.db_password = ""
+  }
+}
+
+# EC2
+variable "ec2" {
+  type = "map"
+  default = {
+    # default
+    default.name = "ec2-web-default"
+    default.instance_image_value = "amzn-ami-hvm-*-x86_64-gp2" # Amazon Linux 2 AMI (HVM), SSD Volume Type
+    default.instance_type = "t2.micro"
+    default.associate_public_ip_address = false
+
+    # インスタンスの容量の設定
+    default.volume_type = "gp2"
+    default.volume_size = "30"
+
+    # オートスケーリングに関する設定
+    default.max_size = "1"
+    default.min_size = "1"
+    default.desired_capacity = "1"
+
+    # ヘルスチェックに関する設定
+    default.health_check_grace_period = 300
+    default.health_check_type = "EC2"
+
+    # オフィスの固定IPアドレスに関する設定
+    default.office_ip = "0.0.0.0/0" # public IP address
+
+    # develop
+    develop.name = ""
+    develop.instance_type = "t2.micro"
+    develop.associate_public_ip_address = true
+  }
+}
+
