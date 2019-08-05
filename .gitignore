@@ -16,6 +16,7 @@ terraform.tfstate
 terraform.tfstate.backup
 .terraform.tfstate.lock.info
 
+environments/variable.tf
 environments/wordpress_web/variable.tf
 environments/wordpress_web/.terraform
 environments/vpc/variable.tf
