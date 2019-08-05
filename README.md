@@ -21,6 +21,6 @@ terraform init
 terraform plan # confirm
 terraform apply # run
 
-terraform destroy # 削除
+terraform destroy # destroy
 ```
 
