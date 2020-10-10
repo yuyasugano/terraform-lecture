@@ -12,7 +12,7 @@ cp environments/wordpress_web/variable.tf.example environments/wordpress_web/var
 ```
 - configure AWS credential information in variable.tf
 
-#### Build Infrastructure
+### Build Infrastructure
 - move to environments and run
 ```
 cd environements
@@ -23,4 +23,7 @@ terraform apply # run
 
 terraform destroy # destroy
 ```
+ 
+### License
 
+This library is licensed under the MIT License.
